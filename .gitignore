@@ -1,6 +1,8 @@
 *.iml
 .idea
-
+**/vendor/src
+**/pkg
+**/bin
 # Compiled Object files, Static and Dynamic libs (Shared Objects)
 *.o
 *.a

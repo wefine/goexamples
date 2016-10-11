@@ -23,6 +23,14 @@ func main() {
 
 	obj := new(Catalog)
 	fmt.Println(obj)
+
+	x := []int{10, 20, 30}
+	y := make([]int, 2)
+	z := []int{}
+	copy(y, x)
+	copy(z, x)
+	fmt.Println(x, y, z)
+
 	os.Exit(0)
 
 }

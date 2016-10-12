@@ -9,6 +9,14 @@ func main() {
 	s := make([]string, 3)
 	fmt.Println("emp:", s)
 
+	// 另一种初始化方式，长度为6，第6个元素的值为1
+	x := []int{5:1}
+	fmt.Println(x)
+
+	// new返回的是指针
+	y := new ([]int)
+	fmt.Println(y)
+
 	// slice数组元素的赋值方式与普通数组相同
 	s[0] = "a"
 	s[1] = "b"

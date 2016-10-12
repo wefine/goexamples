@@ -18,7 +18,8 @@ func main() {
 	makeList := make([]Catalog, 5, 10)
 	fmt.Println(makeList)
 
-	newList := new([10]Catalog)[0:5]
+	newList := new([10]int)[0:5]
+	newList = append(newList,7)
 	fmt.Println(newList)
 
 	obj := new(Catalog)

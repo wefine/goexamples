@@ -7,10 +7,10 @@ import "github.com/kataras/iris"
 func main() {
 	iris.Config.IsDevelopment = true // this will reload the templates on each request, defaults to false
 	//iris.Config.Gzip = true          // this serves the templates with gzip compression, defaults to false
-	iris.Get("/hi", hi)
+	iris.Get("/images", hi)
 	iris.Listen(":8080")
 }
 
 func hi(ctx *iris.Context) {
-	ctx.MustRender("hi.html", struct{ Name string }{Name: "iris"})
+	ctx.MustRender("images.html", struct{ Name string }{Name: "iris"})
 }

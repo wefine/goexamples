@@ -78,4 +78,8 @@ func main() {
 	in := []byte("a peach")
 	out := r.ReplaceAllFunc(in, bytes.ToUpper)
 	fmt.Println(string(out))
+
+	reg := regexp.MustCompile(`ContainerIDFile:\s+((\w|/|\.)*)?`)
+
+	fmt.Printf("%q",reg.FindSubmatch([]byte("ContainerIDFile: /tmp/h1.pid,"))[1] )
 }

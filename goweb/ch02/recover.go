@@ -2,11 +2,14 @@ package main
 
 import "fmt"
 
-func doPanic() {
+func doPanic() string {
 	// 异常捕获
 	defer func() {
 		if e := recover(); e != nil {
 			fmt.Println("Recover with: ", e)
+
+			// 在recover里面是不允许再return的
+			// return "haha"
 		}
 	}()
 
@@ -14,6 +17,8 @@ func doPanic() {
 	panic("Just panicking for the sake of demo")
 	// 下面的代码被不会输出
 	fmt.Println("This will never be called")
+
+	return "haha"
 }
 
 func main() {

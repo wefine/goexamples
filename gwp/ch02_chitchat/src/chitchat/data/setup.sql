@@ -1,39 +1,36 @@
-drop table posts;
-drop table threads;
-drop table sessions;
-drop table users;
+DROP DATABASE chitchat;
+CREATE DATABASE chitchat ENCODING = 'UTF8';
 
-
-create table users (
-  id         serial primary key,
-  uuid       varchar(64) not null unique,
-  name       varchar(255),
-  email      varchar(255) not null unique,
-  password   varchar(255) not null,
-  created_at timestamp not null   
+CREATE TABLE users (
+  id         SERIAL PRIMARY KEY,
+  uuid       VARCHAR(64)  NOT NULL UNIQUE,
+  name       VARCHAR(255),
+  email      VARCHAR(255) NOT NULL UNIQUE,
+  password   VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP    NOT NULL
 );
 
-create table sessions (
-  id         serial primary key,
-  uuid       varchar(64) not null unique,
-  email      varchar(255),
-  user_id    integer references users(id),
-  created_at timestamp not null   
+CREATE TABLE sessions (
+  id         SERIAL PRIMARY KEY,
+  uuid       VARCHAR(64) NOT NULL UNIQUE,
+  email      VARCHAR(255),
+  user_id    INTEGER REFERENCES users (id),
+  created_at TIMESTAMP   NOT NULL
 );
 
-create table threads (
-  id         serial primary key,
-  uuid       varchar(64) not null unique,
-  topic      text,
-  user_id    integer references users(id),
-  created_at timestamp not null       
+CREATE TABLE threads (
+  id         SERIAL PRIMARY KEY,
+  uuid       VARCHAR(64) NOT NULL UNIQUE,
+  topic      TEXT,
+  user_id    INTEGER REFERENCES users (id),
+  created_at TIMESTAMP   NOT NULL
 );
 
-create table posts (
-  id         serial primary key,
-  uuid       varchar(64) not null unique,
-  body       text,
-  user_id    integer references users(id),
-  thread_id  integer references threads(id),
-  created_at timestamp not null  
+CREATE TABLE posts (
+  id         SERIAL PRIMARY KEY,
+  uuid       VARCHAR(64) NOT NULL UNIQUE,
+  body       TEXT,
+  user_id    INTEGER REFERENCES users (id),
+  thread_id  INTEGER REFERENCES threads (id),
+  created_at TIMESTAMP   NOT NULL
 );

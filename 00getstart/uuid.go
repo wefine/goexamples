@@ -1,28 +1,11 @@
-package data
+package main
 
 import (
 	"crypto/rand"
-	"crypto/sha1"
-	"database/sql"
 	"fmt"
-	_ "github.com/lib/pq"
 	"log"
 )
 
-var Db *sql.DB
-
-func init() {
-	var err error
-	Db, err = sql.Open("postgres", "postgres://root:postgreroot@dbhost/chitchat?sslmode=disable")
-
-	if err != nil {
-		log.Fatal(err)
-	}
-	return
-}
-
-// create a random UUID with from RFC 4122
-// adapted from http://github.com/nu7hatch/gouuid
 func createUUID() (uuid string) {
 	u := new([16]byte)
 	_, err := rand.Read(u[:])
@@ -39,8 +22,6 @@ func createUUID() (uuid string) {
 	return
 }
 
-// hash plaintext with SHA-1
-func Encrypt(plaintext string) (crypt string) {
-	crypt = fmt.Sprintf("%x", sha1.Sum([]byte(plaintext)))
-	return
+func main() {
+	createUUID()
 }

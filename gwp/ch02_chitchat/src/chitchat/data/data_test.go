@@ -1,5 +1,10 @@
 package data
 
+import (
+	"fmt"
+	"testing"
+)
+
 // test data
 var users = []User{
 	{
@@ -18,4 +23,9 @@ func setup() {
 	ThreadDeleteAll()
 	SessionDeleteAll()
 	UserDeleteAll()
+}
+
+func Test_createUUID(t *testing.T) {
+	uuid := createUUID()
+	fmt.Println(uuid)
 }

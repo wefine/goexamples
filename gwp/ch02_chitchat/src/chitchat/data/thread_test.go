@@ -7,7 +7,7 @@ import (
 
 // Delete all threads from database
 func ThreadDeleteAll() (err error) {
-	db := db()
+	db := Db
 	defer db.Close()
 	statement := "delete from threads"
 	_, err = db.Exec(statement)

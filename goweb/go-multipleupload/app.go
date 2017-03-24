@@ -13,7 +13,7 @@ var templates = template.Must(template.ParseFiles("tmpl/upload.html"))
 
 //Display the named template
 func display(w http.ResponseWriter, tmpl string, data interface{}) {
-	templates.ExecuteTemplate(w, tmpl+".html", data)
+	templates.ExecuteTemplate(w, tmpl + ".html", data)
 }
 
 //This is where the action happens.
@@ -59,7 +59,54 @@ func uploadHandler(w http.ResponseWriter, r *http.Request) {
 				http.Error(w, err.Error(), http.StatusInternalServerError)
 				return
 			}
+		}
+		//display success message.
+		display(w, "upload", "Upload successful.")
+	default:
+		w.WriteHeader(http.StatusMethodNotAllowed)
+	}
+}
 
+//This is where the action happens.
+func anotherUploadHandler(w http.ResponseWriter, r *http.Request) {
+	switch r.Method {
+	//GET displays the upload form.
+	case "GET":
+		display(w, "upload", nil)
+
+	//POST takes the uploaded file(s) and saves it to disk.
+	case "POST":
+		//get the multipart reader for the request.
+		reader, err := r.MultipartReader()
+
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+
+		//copy each part to destination.
+		for {
+			part, err := reader.NextPart()
+			if err == io.EOF {
+				break
+			}
+
+			//if part.FileName() is empty, skip this iteration.
+			if part.FileName() == "" {
+				continue
+			}
+			dst, err := os.Create("./up_" + part.FileName())
+			defer dst.Close()
+
+			if err != nil {
+				http.Error(w, err.Error(), http.StatusInternalServerError)
+				return
+			}
+
+			if _, err := io.Copy(dst, part); err != nil {
+				http.Error(w, err.Error(), http.StatusInternalServerError)
+				return
+			}
 		}
 		//display success message.
 		display(w, "upload", "Upload successful.")

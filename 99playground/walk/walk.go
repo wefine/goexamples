@@ -1,11 +1,11 @@
 package main
 
 import (
-	"os"
-	"path/filepath"
+	"fmt"
 	"io/ioutil"
 	"log"
-	"fmt"
+	"os"
+	"path/filepath"
 )
 
 func main() {
@@ -45,14 +45,22 @@ func read_link(path string) {
 	exit_code := 0
 	defer os.Exit(exit_code)
 
-	ln, err := filepath.EvalSymlinks(path)
-	if err != nil {
-		fmt.Println("[ERR]", err)
-		exit_code = 1
-		return
-	}
+	fi, _ := os.Lstat(path)
+	if fi.Mode()&os.ModeSymlink != 0 {
+		fmt.Println("it is link!")
 
-	fmt.Println("[FOUND]", ln)
+		orp, _ := os.Readlink(path)
+		fmt.Println("Readlink:", orp)
+
+		ln, err := filepath.EvalSymlinks(path)
+		if err != nil {
+			fmt.Println("[ERR]", err)
+			exit_code = 1
+			return
+		}
+		fmt.Println("File Path:", GetFullPath(path))
+		fmt.Println("target Path:", GetFullPath(ln))
+	}
 }
 
 func walk() {

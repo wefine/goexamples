@@ -12,6 +12,15 @@ func messageHandler(message string) http.Handler {
 	})
 }
 func main() {
+
+	http.Handle("/welcome", messageHandler("Welcome to Go Web Development"))
+	http.Handle("/message", messageHandler("net/http is awesome"))
+
+	log.Println("Listening...")
+	http.ListenAndServe(":8080", nil)
+}
+
+func testNewServeMux() {
 	mux := http.NewServeMux()
 
 	mux.Handle("/welcome", messageHandler("Welcome to Go Web Development"))

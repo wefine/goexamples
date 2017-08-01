@@ -5,8 +5,12 @@
 go get github.com/constabulary/gb
 go get github.com/constabulary/gb/cmd/gb-vendor
 ```
-### dependency
+### install dependency
 ```bash
 
 gb vendor fetch github.com/emicklei/go-restful
+```
+### restore dependency
+```bash
+gb vendor restore
 ```

@@ -1,0 +1,55 @@
+{
+	"version": 0,
+	"dependencies": [
+		{
+			"importpath": "github.com/emicklei/go-restful",
+			"repository": "https://github.com/emicklei/go-restful",
+			"revision": "68c9750c36bb8cb433f1b88c807b4b30df4acc40",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/emicklei/go-restful-swagger12",
+			"repository": "https://github.com/emicklei/go-restful-swagger12",
+			"revision": "dcef7f55730566d41eae5db10e7d6981829720f6",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/golang/protobuf/proto",
+			"repository": "https://github.com/golang/protobuf",
+			"revision": "748d386b5c1ea99658fd69fe9f03991ce86a90c1",
+			"branch": "master",
+			"path": "/proto"
+		},
+		{
+			"importpath": "github.com/gorilla/schema",
+			"repository": "https://github.com/gorilla/schema",
+			"revision": "8b1100835db5bbdae88541510f70d114b91a7e4d",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/mjibson/appstats",
+			"repository": "https://github.com/mjibson/appstats",
+			"revision": "0542d5f0e87ea3a8fa4174322b9532f5d04f9fa8",
+			"branch": "master"
+		},
+		{
+			"importpath": "golang.org/x/net/context",
+			"repository": "https://go.googlesource.com/net",
+			"revision": "f5079bd7f6f74e23c4d65efa0f4ce14cbd6a3c0f",
+			"branch": "master",
+			"path": "/context"
+		},
+		{
+			"importpath": "google.golang.org/appengine",
+			"repository": "https://github.com/golang/appengine",
+			"revision": "ad2570cd3913654e00c5f0183b39d2f998e54046",
+			"branch": "master"
+		},
+		{
+			"importpath": "gopkg.in/vmihailenco/msgpack.v2",
+			"repository": "https://gopkg.in/vmihailenco/msgpack.v2",
+			"revision": "f4f8982de4ef0de18be76456617cc3f5d8d8141e",
+			"branch": "master"
+		}
+	]
+}

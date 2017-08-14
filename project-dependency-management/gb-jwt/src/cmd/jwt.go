@@ -13,9 +13,7 @@ import (
     "github.com/dgrijalva/jwt-go/request"
 )
 
-const (
-    SecretKey = "wefine is really fine"
-)
+var SingedKey = []byte("wefine is really fine")
 
 func fatal(err error) {
     if err != nil {
@@ -88,21 +86,15 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
         }
     }
 
-    token := jwt.New(jwt.SigningMethodHS256)
-    claims := make(jwt.MapClaims)
-    // 过期时间，10小时
-    claims["exp"] = time.Now().Add(time.Hour * time.Duration(10)).Unix()
-    // 签发时间
-    claims["iat"] = time.Now().Unix()
-    token.Claims = claims
-
-    if err != nil {
-        w.WriteHeader(http.StatusInternalServerError)
-        fmt.Fprintln(w, "Error extracting the key")
-        fatal(err)
+    claims := &jwt.StandardClaims{
+        // 过期时间，10小时
+        ExpiresAt: time.Now().Add(time.Hour * time.Duration(10)).Unix(),
+        // 签发时间
+        IssuedAt: time.Now().Unix(),
     }
 
-    tokenString, err := token.SignedString([]byte(SecretKey))
+    token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+    tokenString, err := token.SignedString(SingedKey)
     if err != nil {
         w.WriteHeader(http.StatusInternalServerError)
         fmt.Fprintln(w, "Error while signing the token")
@@ -117,7 +109,7 @@ func ValidateTokenMiddleware(w http.ResponseWriter, r *http.Request, next http.H
 
     token, err := request.ParseFromRequest(r, request.AuthorizationHeaderExtractor,
         func(token *jwt.Token) (interface{}, error) {
-            return []byte(SecretKey), nil
+            return SingedKey, nil
         })
 
     if err == nil {

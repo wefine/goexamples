@@ -1,0 +1,48 @@
+{
+	"version": 0,
+	"dependencies": [
+		{
+			"importpath": "github.com/RangelReale/osin",
+			"repository": "https://github.com/RangelReale/osin",
+			"revision": "829186e6c125f77df6d6ae0162a9ba59fad91e2d",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/RangelReale/osincli",
+			"repository": "https://github.com/RangelReale/osincli",
+			"revision": "fababb0555f21315d1a34af6615a16eaab44396b",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/dgrijalva/jwt-go",
+			"repository": "https://github.com/dgrijalva/jwt-go",
+			"revision": "a539ee1a749a2b895533f979515ac7e6e0f5b650",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/pborman/uuid",
+			"repository": "https://github.com/pborman/uuid",
+			"revision": "e790cca94e6cc75c7064b1332e63811d4aae1a53",
+			"branch": "master"
+		},
+		{
+			"importpath": "golang.org/x/net/context",
+			"repository": "https://go.googlesource.com/net",
+			"revision": "1c05540f6879653db88113bc4a2b70aec4bd491f",
+			"branch": "master",
+			"path": "/context"
+		},
+		{
+			"importpath": "golang.org/x/oauth2",
+			"repository": "https://go.googlesource.com/oauth2",
+			"revision": "9a379c6b3e95a790ffc43293c2a78dee0d7b6e20",
+			"branch": "master"
+		},
+		{
+			"importpath": "gopkg.in/square/go-jose.v1",
+			"repository": "https://gopkg.in/square/go-jose.v1",
+			"revision": "aa2e30fdd1fe9dd3394119af66451ae790d50e0d",
+			"branch": "master"
+		}
+	]
+}

@@ -13,7 +13,7 @@ import (
     "github.com/dgrijalva/jwt-go/request"
 )
 
-var SingedKey = []byte("wefine is really fine")
+var SignedKey = []byte("wefine is really fine")
 
 func fatal(err error) {
     if err != nil {
@@ -94,7 +94,7 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
     }
 
     token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-    tokenString, err := token.SignedString(SingedKey)
+    tokenString, err := token.SignedString(SignedKey)
     if err != nil {
         w.WriteHeader(http.StatusInternalServerError)
         fmt.Fprintln(w, "Error while signing the token")
@@ -109,7 +109,7 @@ func ValidateTokenMiddleware(w http.ResponseWriter, r *http.Request, next http.H
 
     token, err := request.ParseFromRequest(r, request.AuthorizationHeaderExtractor,
         func(token *jwt.Token) (interface{}, error) {
-            return SingedKey, nil
+            return SignedKey, nil
         })
 
     if err == nil {

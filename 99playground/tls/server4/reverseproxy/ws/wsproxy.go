@@ -1,4 +1,4 @@
-package wsproxy
+package ws
 
 import (
     "crypto/tls"

@@ -12,3 +12,5 @@ openssl rsa -in server.key.org -out server.key
 openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
 ```
 
+## reference
+> https://github.com/sensiblecodeio/tiny-ssl-reverse-proxy

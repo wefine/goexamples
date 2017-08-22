@@ -6,7 +6,6 @@ import (
     "net/http"
     "net/url"
     "./wsutil"
-    "./websocketproxy"
 )
 
 func getMuxHandler() http.Handler {
@@ -20,16 +19,10 @@ func getMuxHandler() http.Handler {
 }
 
 func getWsHandler1() http.Handler  {
-    backendURL := &url.URL{Scheme: "wss://", Host: "10.114.51.34:6443"}
+    backendURL := &url.URL{Scheme: "ws://", Host: "localhost:8080"}
     p := wsutil.NewSingleHostReverseProxy(backendURL)
 
     return p
-}
-
-func getWsHandler2() http.Handler  {
-    u := &url.URL{Scheme: "ws://", Host: "10.114.51.34:8080"}
-
-    return websocketproxy.NewProxy(u)
 }
 
 func main() {
@@ -45,9 +38,12 @@ func main() {
             tls.TLS_RSA_WITH_AES_256_CBC_SHA,
         },
     }
+
+    listen := ":7553"
+    log.Println(listen)
     srv := &http.Server{
-        Addr:         ":7443",
-        Handler:      getWsHandler2(),
+        Addr:         listen,
+        Handler:      getWsHandler1(),
         TLSConfig:    cfg,
         TLSNextProto: make(map[string]func(*http.Server, *tls.Conn, http.Handler), 0),
     }

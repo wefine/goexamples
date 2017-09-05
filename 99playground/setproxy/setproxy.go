@@ -89,7 +89,7 @@ func proxyBower(proxy string) {
 			if strings.Index(line, "proxy") != -1 {
 				lines[i] = "  \"proxy\": \"" + proxy + "\","
 				if strings.Index(line, "https") != -1 {
-					lines[i] = "  \"https-proxy\": \"" + proxy + "\","
+					lines[i] = "  \"https-proxy\": \"" + proxy + "\""
 				}
 
 				count++

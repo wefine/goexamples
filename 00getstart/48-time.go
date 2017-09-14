@@ -13,6 +13,8 @@ func main() {
 	now := time.Now()
 	p(now)
 
+	p("unix:", time.Now().Unix())
+    p("RFC3339:",now.Format(time.RFC3339))
 	// You can build a `time` struct by providing the
 	// year, month, day, etc. Times are always associated
 	// with a `Location`, i.e. time zone.

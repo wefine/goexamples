@@ -4,7 +4,10 @@
 package main
 
 import "fmt"
-import "time"
+import (
+    "time"
+    "os"
+)
 
 func main() {
 	p := fmt.Println
@@ -14,7 +17,10 @@ func main() {
 	p(now)
 
 	p("unix:", time.Now().Unix())
+	p("unix:", time.Now().UnixNano())
     p("RFC3339:",now.Format(time.RFC3339))
+
+    os.Exit(1)
 	// You can build a `time` struct by providing the
 	// year, month, day, etc. Times are always associated
 	// with a `Location`, i.e. time zone.

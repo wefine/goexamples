@@ -1,0 +1,30 @@
+{
+	"version": 0,
+	"dependencies": [
+		{
+			"importpath": "github.com/gorilla/websocket",
+			"repository": "https://github.com/gorilla/websocket",
+			"revision": "71fa72d4842364bc5f74185f4161e0099ea3624a",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/igm/pubsub",
+			"repository": "https://github.com/igm/pubsub",
+			"revision": "e23a3057c0f1483d5c5ce3ec4c5f564287ebfdf2",
+			"branch": "master"
+		},
+		{
+			"importpath": "golang.org/x/net/websocket",
+			"repository": "https://go.googlesource.com/net",
+			"revision": "1087133bc4af3073e18add999345c6ae75918503",
+			"branch": "master",
+			"path": "/websocket"
+		},
+		{
+			"importpath": "gopkg.in/igm/sockjs-go.v2",
+			"repository": "https://gopkg.in/igm/sockjs-go.v2",
+			"revision": "d276e9ffe5cc5c271b81198cc77a2adf6c4482d2",
+			"branch": "v2"
+		}
+	]
+}

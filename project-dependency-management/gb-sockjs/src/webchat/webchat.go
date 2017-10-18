@@ -4,8 +4,8 @@ import (
 	"log"
 	"net/http"
 
-	"src/github.com/igm/pubsub"
-	"src/gopkg.in/igm/sockjs-go.v2/sockjs"
+	"github.com/igm/pubsub"
+	"gopkg.in/igm/sockjs-go.v2/sockjs"
 )
 
 var chat pubsub.Publisher
@@ -33,11 +33,11 @@ func echoHandler(session sockjs.Session) {
 					return
 				}
 			}
-
 		}
 	}()
 	for {
 		if msg, err := session.Recv(); err == nil {
+		    log.Println("msg:", string(msg))
 			chat.Publish(msg)
 			continue
 		}

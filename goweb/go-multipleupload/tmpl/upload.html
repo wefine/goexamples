@@ -1,20 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <title>File Upload Demo</title>
     <link type="text/css" rel="stylesheet" href="/assets/css/style.css" />
-  </head>
-  <body>
-    <div class="container">
-      <h1>File Upload Demo</h1>
-      <div class="message">{{.}}</div>
-      <form class="form-signin" method="post" action="/upload" enctype="multipart/form-data">
-          <fieldset>
+</head>
+<body>
+<div class="container">
+    <h1>File Upload Demo</h1>
+    <div class="message">{{.}}</div>
+    <form class="form-signin" method="post" action="/upload" enctype="multipart/form-data">
+        <fieldset>
             <input name="name" value="name1234">
             <input type="file" name="myfiles" multiple="multiple">
-            <input type="submit" name="submit" value="Submit">
+            <input id="_submit" type="submit" name="submit" value="Submit">
+            <input id="_reset" type="reset" name="reset" value="reset" style="display: none;">
         </fieldset>
-      </form>
-    </div>
-  </body>
+    </form>
+</div>
+</body>
+<script type="text/javascript">
+    document.getElementById('_submit').onclick = function (event) {
+        //取消掉默认的form提交方式
+        if (event.preventDefault) event.preventDefault();
+        else event.returnValue = false;                           //对于IE的取消方式
+
+        var formDOM = document.getElementsByTagName('form')[0];
+        //将form的DOM对象当作FormData的构造函数
+        var formData = new FormData(formDOM);
+        var req = new XMLHttpRequest();
+        req.open('POST', 'upload');
+        //请求完成
+        req.onload = function () {
+            if (this.status === 200) {
+                //对请求成功的处理
+                alert('success');
+                document.getElementById('_reset').click();
+            }
+        };
+        //将form数据发送出去
+        req.send(formData);
+        //避免内存泄漏
+        req = null;
+    }
+</script>
 </html>
